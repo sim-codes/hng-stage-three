@@ -1,9 +1,7 @@
 import SearchSection from "@/app/ui/home/searchSection"
 import SnackSection from "@/app/ui/meals/snacksSection"
 import ReviewsSection from "@/app/ui/reviews"
-import { Snacks, Soups, MealsMenu, Swallow,
-    Salads, Coffees, Drinks, IceCreams
-} from "@/app/lib/data"
+import { Suspense } from "react"
 import OfferSection from "@/app/ui/meals/offerSection"
 import Carousel from "@/app/ui/carousel";
 
@@ -47,14 +45,10 @@ export default function Meals() {
         <main className="flex flex-col items-center min-h-screen md:px-12 lg:px-24">
             <Carousel slides={slides} />
             <SearchSection />
-            <SnackSection />
-            {/* <SnackSection snacks={Soups} menuName="Soups" />
-            <SnackSection snacks={MealsMenu} menuName="Meals" />
-            <SnackSection snacks={Salads} menuName="Salad" />
-            <SnackSection snacks={Coffees} menuName="Coffee & Tea" />
-            <SnackSection snacks={Drinks} menuName="Drinks" />
-            <SnackSection snacks={IceCreams} menuName="Ice Creams" />
-            <SnackSection snacks={Swallow} menuName="Swallow" /> */}
+
+            <Suspense fallback={<div>Loading...</div>}>
+                <SnackSection />
+            </Suspense>
 
             <OfferSection />
             <ReviewsSection />
