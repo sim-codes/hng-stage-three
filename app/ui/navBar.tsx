@@ -5,10 +5,11 @@ import { Logo } from "./Logo"
 import Link from "next/link"
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import clsx from "clsx";
+import cartIcom from "@/public/icons/cart.svg";
 import { ChevronDownIcon, Bars3BottomRightIcon, XMarkIcon, ChevronRightIcon, ArrowRightIcon } from "@heroicons/react/16/solid";
 import { ShoppingBagIcon, UsersIcon, UserIcon, ShoppingCartIcon, HeartIcon } from "@heroicons/react/24/outline";
 import mealIcon from "@/public/icons/meal.svg";
+import { IMAGES_MANIFEST } from "next/dist/shared/lib/constants";
 
 
 const links = {
@@ -65,7 +66,7 @@ export default function NavBar(){
                         {isLogin ? (
                             <div className="relative flex gap-6">
                                 <Link href="/cart" className="text-[#3B3533] hidden md:flex items-center justify-center bg-[#F6F6F6] rounded-full w-12 h-12">
-                                    <ShoppingCartIcon className="w-6 h-6" />
+                                    <Image src={cartIcom} alt="cart" width={30} height={30} />
                                 </Link>
                                 
                                 <button className="text-[#616161] hidden md:flex items-center justify-center bg-[#F6F6F6] rounded-full w-12 h-12">
@@ -96,7 +97,7 @@ export default function NavBar(){
                         ) : (
                             <div className="flex gap-4">
                                 <Link href="/cart" className="text-[#3B3533] hidden md:flex items-center justify-center bg-[#F6F6F6] rounded-full w-12 h-12">
-                                    <ShoppingCartIcon className="w-6 h-6" />
+                                    <Image src={cartIcom} alt="cart" width={30} height={30} />
                                 </Link>
                                 <button onClick={() => setIsLogin(true)}
                                     className="hidden md:flex justify-center items-center gap-3 font-semibold bg-primary text-white rounded-lg p-4 w-auto h-12">

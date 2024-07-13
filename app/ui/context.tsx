@@ -52,12 +52,6 @@ export function Provider({ children }: Readonly<{ children: React.ReactNode}>) {
     }
     ,[cart])
 
-    const combinedList = [
-        ...HotDishes, ...Snacks, ...Soups,
-        ...Salads, ...Coffees, ...Drinks,
-        ...Swallow,...IceCreams, ...MealsMenu
-    ]
-
     const router = useRouter()
 
     const addToCart = (

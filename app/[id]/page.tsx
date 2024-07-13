@@ -5,7 +5,8 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 import { useCartState } from "@/app/ui/context"
-import { Data } from "@/app/lib/definitons"
+import { SData } from "@/app/lib/definitons"
+import SProductReview from "@/app/ui/SProductReview";
 
 const appID = process.env.NEXT_PUBLIC_APP_ID;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -18,7 +19,7 @@ export default function SingleProduct({ params }: { params: { id: string } }) {
 
     const baseURL = `https://api.timbu.cloud/products/${id}?organization_id=${orgID}&Appid=${appID}&Apikey=${apiKey}`
     
-    const [data, setData] = useState<Data>({id: "", name: "", description: "", current_price: 0, photos: [{url: ""}]});
+    const [data, setData] = useState<SData>({id: "", name: "", description: "", current_price: 0, photos: [{url: ""}]});
 
     useEffect(() => {
         fetch(baseURL)
@@ -30,7 +31,7 @@ export default function SingleProduct({ params }: { params: { id: string } }) {
     return (
         <section className="flex flex-col justify-center max-w-screen">
             <div className="bg-[#fff] md:bg-[#F9FAFB] lg:bg-[#F9FAFB] md:px-12 lg:px-24">
-                <div className="bg-[#fff] rounded-lg p-5 my-14">
+                <div className="bg-[#fff] rounded-lg p-5 my-14 flex flex-col">
                     <h1 className="flex gap-3 items-center text-bold px-5 my-12">
                         <Link href="/">Menu</Link>
                         <ChevronRightIcon className="h-4 w-4" />
@@ -76,6 +77,28 @@ export default function SingleProduct({ params }: { params: { id: string } }) {
                             </div>
                         </div>
                     </div>
+
+                    <div className="my-10 text-[#616161]">
+                        <div className="flex justify-between">
+                            <h3 className="text-2xl text-black font-bold">Reviews</h3>
+                            <button
+                            className="flex gap-2 items-center justify-center font-semibold px-4 py-2transition-all ease-in-out duration-150
+                            text-primary hover:bg-primary hover:text-white border border-primary rounded-md min-w-[142px] min-h-[48px]">
+                                Add Review
+                            </button>
+                        </div>
+                        <div className="my-5 flex gap-4">
+                            <span className="font-bold text-4xl">4.8</span>
+                            <div className="">
+                                <p>Very good</p>
+                                <p>12 verifield reviews</p>
+                            </div>
+                        </div>
+
+                        <SProductReview />                        
+                    </div>
+
+                    <button className="max-w-7xl mx-auto text-[#5B5554]">load more review</button>
                 </div>
             </div>
         </section>

@@ -41,10 +41,24 @@ export type PriceData = {
     NGN: number[],
 }
 
-export type Data = {
+export type SData = {
     id: string,
     name: string,
     description: string,
     current_price: number,
     photos: Photo[]
+}
+
+export type Data = {
+    id: string,
+    name: string,
+    description: string,
+    current_price: PriceData[],
+    photos: Photo[]
+
+}
+
+export type AllAPIData = {
+    total: number,
+    items: Data[]
 }

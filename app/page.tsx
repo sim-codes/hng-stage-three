@@ -1,8 +1,7 @@
 import SearchSection from "@/app/ui/home/searchSection"
-import SnackSection from "@/app/ui/meals/snacksSection"
+import SnackSection from "@/app/ui/productsSection"
 import ReviewsSection from "@/app/ui/reviews"
 import { Suspense } from "react"
-import OfferSection from "@/app/ui/meals/offerSection"
 import Carousel from "@/app/ui/carousel";
 
 
@@ -50,7 +49,6 @@ export default function Meals() {
                 <SnackSection />
             </Suspense>
 
-            <OfferSection />
             <ReviewsSection />
         </main>
     )

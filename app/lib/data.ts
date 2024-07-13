@@ -334,6 +334,12 @@ export const Swallow = [
 export const Offers = [
     {
         id: "d8s7d8s7d",
+        name: "Shrimp Soup with Vegies",
+        category: "Shrimp",
+        image: "/images/shrimp.png",
+    },
+    {
+        id: "d8s7d8s7d",
         name: "Chicken Wings with Chips",
         category: "Fries",
         image: "/images/chickenWings.png",
