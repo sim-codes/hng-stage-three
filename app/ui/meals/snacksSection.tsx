@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import Image from "next/image"
 import { ShoppingCartIcon, CurrencyDollarIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
-import { MenuData } from "@/app/lib/definitons"
 import { useCartState } from "@/app/ui/context"
 import Pagination from "@/app/ui/pagination"
-import Link from "next/link";
 import { useSearchParams } from 'next/navigation'
 
 type Photo = {

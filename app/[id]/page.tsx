@@ -25,7 +25,7 @@ export default function SingleProduct({ params }: { params: { id: string } }) {
         .then(res => res.json())
         .then(data => setData(data))
         .then(data => console.log(data))
-    }, [])
+    }, [baseURL])
 
     return (
         <section className="flex flex-col justify-center max-w-screen">
