@@ -103,9 +103,10 @@ export default function CartItems(){
                         {
                             cart.length === 0 ? (
                                 <div className="flex flex-col justify-center items-center gap-5 my-10">
-                                    <p className="text-center">No item in cart</p>
-                                    <Link href="/" className="text-primary bg-[#FFF2ED] p-2 rounded-lg text-sm">
-                                        Continue Shopping
+                                    <h2 className="font-bold text-4xl">Empty Cart!</h2>
+                                    <p className="text-center text-sm">You currently do not have an item in your cart. Select an <br />item from the menu page</p>
+                                    <Link href="/" className="text-primary bg-[#FFF2ED] py-3 rounded-lg text-sm min-w-[20vw] flex justify-center items-center font-bold">
+                                        Add an Item to Cart
                                     </Link>
                                 </div>
                             ) : cart.map((item) => (
