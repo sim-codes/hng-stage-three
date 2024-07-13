@@ -305,7 +305,7 @@ export default function Checkout() {
                             <div className="flex flex-col gap-5 my-2">
                                 <div className="flex items-center justify-between">
                                     <span>Sub Total</span>
-                                    <span className="font-bold">₦ 89,000.00</span>
+                                    <span className="font-bold">₦ 9,000.00</span>
                                 </div>
 
                                 <div className="flex items-center justify-between">
@@ -315,20 +315,20 @@ export default function Checkout() {
 
                                 <div className="flex items-center justify-between">
                                     <span>Discount (20%)</span>
-                                    <span className="text-sm">₦ 8,500.00</span>
+                                    <span className="text-sm">₦ 500.00</span>
                                 </div>
 
                                 <hr className="my-3 border" />
 
                                 <div className="flex items-center justify-between">
                                     <span className="font-bold">Total</span>
-                                    <span className="font-bold">₦ 72,000.00</span>
+                                    <span className="font-bold">₦ 17,000.00</span>
                                 </div>
                             </div>
 
                             <button
                                 className="grid grid-cols-1 h-12 justify-items-center font-semibold content-center bg-primary text-white text-center text-sm w-full rounded-lg p-2">
-                                Pay $718.08
+                                Pay ₦ 17,000.08
                             </button>
                         </div>
                     </div>

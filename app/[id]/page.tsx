@@ -53,7 +53,7 @@ export default function SingleProduct({ params }: { params: { id: string } }) {
                         <div className="flex flex-col gap-5">
                             <p className="font-bold text-4xl self-end">₦ {data.current_price}</p>
                             
-                            <div className="flex ">
+                            <div className="flex gap-2">
                                 <div className="flex items-center gap-2">
                                     <button className="bg-gray-200 rounded-full p-1">
                                         <MinusIcon className="h-4 w-4" onClick={() => 

@@ -11,12 +11,11 @@ export default function HotDishesSection() {
     const {addToCart } = useCartState()
 
     return (
-        <section className="self-stretch p-5 mb-5">
-            <div className="flex justify-between">
-                <h2 className="font-bold text-2xl">Hot Dishes</h2>
-                <button className="flex justify-center items-center gap-2 bg-primary rounded-md text-white max-w-40 p-2">
-                    View all
-                    <ArrowRightIcon className="h-4 w-4" />
+        <section className="self-stretch p-5 mb-5 md:px-24">
+            <div className="flex justify-between px-5">
+                <h2 className="font-bold text-2xl">Saved Delicacies</h2>
+                <button className="font-bold text-[#5B5554] gap-2 underline max-w-40 p-2">
+                    see all offers
                 </button>
             </div>
 
