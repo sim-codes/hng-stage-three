@@ -38,7 +38,8 @@ const CartContext = createContext<CartContextType>({
 export function Provider({ children }: Readonly<{ children: React.ReactNode}>) {
 
     const [local] = useState(():Array<Cart> => {
-        const data = localStorage.getItem('cart');
+        if (typeof window === 'undefined') return Array<Cart>();
+        const data = window.localStorage.getItem('cart');
         return data ? JSON.parse(data) : Array<Cart>();
     })
 
@@ -46,7 +47,7 @@ export function Provider({ children }: Readonly<{ children: React.ReactNode}>) {
     const [ totalPrice, setTotalPrice ] = useState<number>(0)
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
+        window.localStorage.setItem('cart', JSON.stringify(cart))
         setTotalPrice(cart.reduce((acc, item) => acc + item.price * item.qty, 0))
     }
     ,[cart])
