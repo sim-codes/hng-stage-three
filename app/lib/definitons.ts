@@ -31,3 +31,20 @@ export type Cart = {
     image: string;
     description: string;
 }
+
+export type Photo = {
+    url: string
+
+}
+
+export type PriceData = {
+    NGN: number[],
+}
+
+export type Data = {
+    id: string,
+    name: string,
+    description: string,
+    current_price: number,
+    photos: Photo[]
+}

@@ -47,14 +47,14 @@ export default function Meals() {
         <main className="flex flex-col items-center min-h-screen md:px-12 lg:px-24">
             <Carousel slides={slides} />
             <SearchSection />
-            <SnackSection snacks={Snacks} menuName="Snack" />
-            <SnackSection snacks={Soups} menuName="Soups" />
+            <SnackSection />
+            {/* <SnackSection snacks={Soups} menuName="Soups" />
             <SnackSection snacks={MealsMenu} menuName="Meals" />
             <SnackSection snacks={Salads} menuName="Salad" />
             <SnackSection snacks={Coffees} menuName="Coffee & Tea" />
             <SnackSection snacks={Drinks} menuName="Drinks" />
             <SnackSection snacks={IceCreams} menuName="Ice Creams" />
-            <SnackSection snacks={Swallow} menuName="Swallow" />
+            <SnackSection snacks={Swallow} menuName="Swallow" /> */}
 
             <OfferSection />
             <ReviewsSection />

@@ -9,17 +9,11 @@ export default function SearchSection() {
           <div className="w-full flex flex-wrap justify-between items-center my-2 p-3">
             <h2 className="font-bold text-2xl my-5">Search by categories</h2>
 
-            <div className="flex justify-between gap-2 w-full lg:w-fit">
-              <div className="flex gap-2 items-center bg-[#F9FAFB] border rounded-full p-2 w-[80%]">
+            <div className="flex gap-2 items-center bg-[#F9FAFB] border rounded-full p-2 md:w-[433px] w-[239px]">
                 <input type="text" placeholder="Search for food..." 
                 className="bg-transparent p-1 focus:outline-none focus:border-none max-w-2xl text-[#BCB9B4] w-full" />
                 <MagnifyingGlassMinusIcon className="h-5 w-5 text-[#BCB9B4]" />
-              </div>
-
-              <button className="flex justify-center items-center bg-[#F9FAFB]  text-[#BCB9B4] rounded-full w-12 h-12 border">
-                <FunnelIcon className="h-5 w-5" />
-              </button>         
-            </div>
+            </div> 
           </div>
 
           <div className="flex md:gap-8 lg:gap-8 overflow-x-auto whitespace-nowrap no-scrollbar p-0">

@@ -6,7 +6,7 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'api.timbu.cloud',
             port: '',
-            pathname: '/images/master-chef-food-and-drinks/**',
+            pathname: '/images/**',
           },
         ],
       },

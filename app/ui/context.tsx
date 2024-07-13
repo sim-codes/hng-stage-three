@@ -1,6 +1,6 @@
 "use client";
 
-import {useState, createContext, useContext} from "react"
+import {useState, createContext, useContext, useEffect} from "react"
 import { Cart } from "@/app/lib/definitons"
 import { HotDishes, Snacks, Soups,
     MealsMenu, Salads, Drinks, IceCreams, Swallow, Coffees
@@ -12,7 +12,7 @@ import { HotDishes, Snacks, Soups,
 type CartContextType = {
     cart: Array<Cart>;
     totalPrice: number;
-    addToCart: (itemId: string) => void;
+    addToCart: (itemId: string, name: string, price: number, qty: number, image: string, description: string) => void;
     removeFromCart: (id: string) => void;
     addReduceProductQuantity: (id: string, action: string) => void;
     clearCart: () => void;
@@ -21,7 +21,7 @@ type CartContextType = {
 const CartContext = createContext<CartContextType>({
     cart: [],
     totalPrice: 0,
-    addToCart: function (id: string): void {
+    addToCart: function (itemId: string, name: string, price: number, qty: number, image: string, description: string): void {
         throw new Error("Function not implemented.");
     },
     removeFromCart: function (id: string): void {
@@ -37,8 +37,19 @@ const CartContext = createContext<CartContextType>({
 
 export function Provider({ children }: Readonly<{ children: React.ReactNode}>) {
 
-    const [cart, setCart] = useState(Array<Cart>)
+    const [local] = useState(():Array<Cart> => {
+        const data = localStorage.getItem('cart');
+        return data ? JSON.parse(data) : Array<Cart>();
+    })
+
+    const [cart, setCart] = useState(local)
     const [ totalPrice, setTotalPrice ] = useState<number>(0)
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart))
+        setTotalPrice(cart.reduce((acc, item) => acc + item.price * item.qty, 0))
+    }
+    ,[cart])
 
     const combinedList = [
         ...HotDishes, ...Snacks, ...Soups,
@@ -48,43 +59,38 @@ export function Provider({ children }: Readonly<{ children: React.ReactNode}>) {
 
     const router = useRouter()
 
-    const addToCart = (itemId: string) => {
+    const addToCart = (
+        itemId: string,
+        name: string,
+        price: number,
+        qty: number,
+        image: string,
+        description: string
+    ) => {
     
-        // Find the item in itemsList based on itemId
-        const selectedItem = combinedList.find(item => item.id === itemId);
+        // Check if the item already exists in the cart
+        const existingItem = cart.find(item => item.id === itemId);
     
-        if (selectedItem) {
-            // Check if the item already exists in the cart
-            const existingItem = cart.find(item => item.id === itemId);
-    
-            if (existingItem) {
-                // Item with the same id exists, update its quantity
-                const updatedCart = cart.map(item =>
-                    item.id === itemId ? { ...item, qty: item.qty + 1 } : item
-                );
-                setCart(updatedCart);
-            } else {
-                // Item does not exist in the cart, add new item
-                const newItem: Cart = {
-                    id: selectedItem.id,
-                    name: selectedItem.name,
-                    price: selectedItem.price,
-                    qty: 1,
-                    image: selectedItem.image,
-                    description: selectedItem.description,
-                };
-                const updatedCart = [...cart, newItem];
-                setCart(updatedCart);
-            }
-
-            // Update the total price
-            setTotalPrice(totalPrice + selectedItem.price);
-            
-            // Navigate to the cart page
-            return router.push('/cart');
+        if (existingItem) {
+            // Item with the same id exists, update its quantity
+            const updatedCart = cart.map(item =>
+                item.id === itemId ? { ...item, qty: item.qty + qty } : item
+            );
+            setCart(updatedCart);
         } else {
-            console.error(`Item with id ${itemId} not found in itemsList.`);
+            // Item does not exist in the cart, add new item
+            const newItem: Cart = {id: itemId, name, price, qty, image, description};
+
+            const updatedCart = [...cart, newItem];
+            setCart(updatedCart);
         }
+        console.log('image url',image)
+
+        // Update the total price
+        setTotalPrice(totalPrice + (price*qty));
+        
+        // Navigate to the cart page
+        return router.push('/cart');
     };
     
     

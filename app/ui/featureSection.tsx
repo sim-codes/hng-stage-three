@@ -59,7 +59,7 @@ export default function HotDishesSection() {
                         <div className="self-stretch flex justify-between">
                             <p className="text-2xl font-bold">₦ {menu.price}</p>
 
-                            <button onClick={() => addToCart(menu.id)}
+                            <button onClick={() => addToCart(menu.id, menu.name, menu.price, 1, menu.image, menu.description)}
                              className="flex gap-2 items-center font-semibold p-1 border
                             hover:text-white hover:bg-primary border-primary text-primary rounded-md">
                                 Add to Cart

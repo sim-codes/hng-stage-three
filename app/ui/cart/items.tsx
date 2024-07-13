@@ -52,7 +52,7 @@ export default function CartItems(){
                                             rounded-md checked:bg-primary checked:border-transparent focus:outline-none"
                                         />
                                         <div className="relative bg-black h-44 w-80 rounded-lg overflow-hidden">
-                                            <Image src={item.image} alt="food" fill={true} className="object-cover"/>
+                                            <Image src={`https://api.timbu.cloud/images/${item.image}`} alt={item.name} fill={true} className="object-cover" />
                                         </div>
                                         
                                         <div className="flex flex-col gap-3 justify-center w-full">
@@ -118,7 +118,7 @@ export default function CartItems(){
                                             rounded-sm checked:bg-primary checked:border-transparent focus:outline-none"
                                         />
                                         <div className="relative bg-black h-36 min-w-32 rounded-lg overflow-hidden">
-                                            <Image src={item.image} alt="food" fill={true} className="object-cover"/>
+                                            <Image src={`https://api.timbu.cloud/images/${item.image}`} alt={item.name} fill={true} className="object-cover" />
                                         </div>
                                         
                                         <div className="flex flex-col gap-3 justify-center w-48">
@@ -159,53 +159,57 @@ export default function CartItems(){
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-5 my-5 max-w-96 min-w-72 border p-5 rounded-lg">
-                    <h3 className="font-bold border-b-2 pb-5">Cart Summary</h3>
+                {
+                    cart.length > 0 && (
+                        <div className="flex flex-col gap-5 my-5 max-w-96 min-w-72 border p-5 rounded-lg">
+                            <h3 className="font-bold border-b-2 pb-5">Cart Summary</h3>
 
-                    <div className="flex flex-col gap-5 py-5 mt-5 text-sm">
-                        <div className="flex justify-between gap-3 items-center">
-                            <p>Sub Total</p>
-                            <p className="font-bold">₦ {totalPrice}</p>
+                            <div className="flex flex-col gap-5 py-5 mt-5 text-sm">
+                                <div className="flex justify-between gap-3 items-center">
+                                    <p>Sub Total</p>
+                                    <p className="font-bold">₦ {totalPrice}</p>
+                                </div>
+
+                                <div className="flex justify-between gap-3 items-center">
+                                    <p>Tax (2%)</p>
+                                    <p className="">₦ 250</p>
+                                </div>
+
+                                <div className="flex justify-between gap-3 items-center">
+                                    <p>Discount (5%)</p>
+                                    <p className="">₦ 500</p>
+                                </div>
+
+                                <div className="flex justify-between gap-3 items-center">
+                                    <p>Dilivery 2%</p>
+                                    <p className="">₦ 2,500</p>
+                                </div>
+
+                                <hr className="border" />
+
+                                <div className="flex justify-between gap-3 items-center font-bold">
+                                    <p>Total</p>
+                                    <p className="font-bold">₦ {totalPrice + 250 + 500 + 2500}</p>
+                                </div>
+                            </div>
+
+                            <Link href="/checkout" className="bg-primary text-white font-semibold text-center text-sm w-full rounded-lg p-2">
+                                Proceed to Checkout
+                            </Link>
+                            <button className="text-primary bg-[#FFF2ED] text-sm w-full font-semibold rounded-lg p-2">
+                                Pair Deliver With Other Users
+                            </button>
+
+                            <div className="flex flex-col gap-2">
+                                <p className="font-bold">Return Policy</p>
+                                <p className="text-sm">
+                                    Returning an item is very easy, read details 
+                                    <span className="text-primary"> here</span>
+                                </p>
+                            </div>
                         </div>
-
-                        <div className="flex justify-between gap-3 items-center">
-                            <p>Tax (2%)</p>
-                            <p className="">₦ 250</p>
-                        </div>
-
-                        <div className="flex justify-between gap-3 items-center">
-                            <p>Discount (5%)</p>
-                            <p className="">₦ 500</p>
-                        </div>
-
-                        <div className="flex justify-between gap-3 items-center">
-                            <p>Dilivery 2%</p>
-                            <p className="">₦ 2,500</p>
-                        </div>
-
-                        <hr className="border" />
-
-                        <div className="flex justify-between gap-3 items-center font-bold">
-                            <p>Total</p>
-                            <p className="font-bold">₦ {totalPrice + 250 + 500 + 2500}</p>
-                        </div>
-                    </div>
-
-                    <Link href="/checkout" className="bg-primary text-white font-semibold text-center text-sm w-full rounded-lg p-2">
-                        Proceed to Checkout
-                    </Link>
-                    <button className="text-primary bg-[#FFF2ED] text-sm w-full font-semibold rounded-lg p-2">
-                        Pair Deliver With Other Users
-                    </button>
-
-                    <div className="flex flex-col gap-2">
-                        <p className="font-bold">Return Policy</p>
-                        <p className="text-sm">
-                            Returning an item is very easy, read details 
-                            <span className="text-primary"> here</span>
-                        </p>
-                    </div>
-                </div>
+                    )
+                }
             </div>
         </div>
     )
