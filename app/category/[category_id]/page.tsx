@@ -61,7 +61,7 @@ export default function Page({ params }: { params: { category_id: string } }) {
             <div className="self-stretch">
                 {
                     menuList.map((menu) => (
-                        menu.id === category_id && <h2 className="font-bold text-2xl">{menu.name} Listing</h2>
+                        menu.id === category_id && <h2 className="font-bold text-2xl" key={menu.id}>{menu.name} Listing</h2>
                     ))
                 }
             </div>
