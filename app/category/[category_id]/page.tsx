@@ -1,26 +1,49 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image"
-import { ShoppingCartIcon, CurrencyDollarIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
-import { useCartState } from "@/app/ui/context"
+import { useState, useEffect } from "react";
+import SearchSection from "@/app/ui/home/searchSection"
 import Pagination from "@/app/ui/pagination"
 import { useSearchParams } from 'next/navigation'
-import { AllAPIData } from "@/app/lib/definitons"
-
+import Image from "next/image"
+import { ShoppingCartIcon, CurrencyDollarIcon, ArrowRightIcon } from "@heroicons/react/24/outline"
+import ReviewsSection from "@/app/ui/reviews"
+import { Suspense } from "react"
+import Carousel from "@/app/ui/carousel";
+import { slides } from "@/app/lib/data";
+import { AllAPIData } from "@/app/lib/definitons";
 
 const appID = process.env.NEXT_PUBLIC_APP_ID;
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 const orgID = process.env.NEXT_PUBLIC_ORG_ID;
 
-export default function ProductsSection()
- {
-    const {addToCart } = useCartState()
-    const searchParams = useSearchParams();
-    const currentPage = Number(searchParams.get('page') || '1');
+const menuList = [
+    {id: '9dfef41528484830a98b4a8b51e26f1b',
+    name: 'Drinks',},
+    {id: '95446c22d6b645d49081554a86ec868f',
+    name: 'Ice Cream',},
+    {id: '124c6113dd054a5a84bbae8ae9be7ec6',
+    name: 'Swallow',},
+    {id: '0222c04ee9c64c47b81a7729a29ab52e',
+    name: 'Coffee',},
+    {id: '2c7c21f2501e42eab83a49a6ff37d989',
+    name: 'Snack',},
+    {id: 'c90a3b0d030b4799886672f3d5ed1935',
+    name: 'Soup',},
+    {id: '77dd8eb8fb5e460987157920ff961513',
+    name: 'Meal',},
+    {id: '6e06db0c8cd64cf0b079b2e7de15053c',
+    name: 'Salad',},
+]
 
-    const baseURL = `https://api.timbu.cloud/products?organization_id=${orgID}&page=${currentPage}&size=12&&Appid=${appID}&Apikey=${apiKey}`
-  
+export default function Page({ params }: { params: { category_id: string } }) {
+    const searchParams = useSearchParams();
+
+    const category_id = params.category_id;
+    const currentPage = Number(searchParams.get('page') || '1');
+    const [qty, setQty] = useState(1);
+
+    const baseURL = `https://api.timbu.cloud/products?organization_id=${orgID}&Appid=${appID}&Apikey=${apiKey}&page=1&category_id=${category_id}&size=12`
+    
     const [data, setData] = useState<AllAPIData>({total: 0, items: []});
 
     useEffect(() => {
@@ -31,12 +54,19 @@ export default function ProductsSection()
     }, [baseURL])
 
     return (
-        <section className="self-stretch p-5 mb-5">
+        <main className="flex flex-col items-center min-h-screen md:px-12 lg:px-24">
+            <Carousel slides={slides} />
+            <SearchSection />
 
-            <div className="flex justify-between">
-                <h2 className="font-bold text-2xl">Menu Listing</h2>
+            <div className="self-stretch">
+                {
+                    menuList.map((menu) => (
+                        menu.id === category_id && <h2 className="font-bold text-2xl">{menu.name} Listing</h2>
+                    ))
+                }
             </div>
 
+            <div className="self-stretch p-5 mb-5">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 my-2">
                 {data.items.map((menu) => (
                     <a href={`/${menu.id}`} key={menu.id}>
@@ -70,6 +100,9 @@ export default function ProductsSection()
                 ))}
             </div>
             <Pagination totalPages={Math.ceil(data.total / 12)} />
-        </section>
+            </div>
+
+            <ReviewsSection />
+        </main>
     )
 }
